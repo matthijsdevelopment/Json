@@ -1,3 +1,22 @@
-img {
-    width: 100px;
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.bookselection__img {
+    max-width: 100px;
+}
+
+.bookselection__row:nth-child(even) {
+    background-color: lightgray;
+}
+
+.bookselection__data {
+    vertical-align: top;
+    padding: 1em;
+}
+
+.bookselection__data:nth-child(3) {
+    padding: 0;
 }
