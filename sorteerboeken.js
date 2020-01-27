@@ -1,3 +1,9 @@
+let kenmerk = document.getElementById('kenmerk');
+kenmerk.addEventListener('change', (e) => {
+    sortBooksOBJ.kenmerk = e.target.value;
+    sortBooksOBJ.sorteren();
+})
+
 // JSON importeren
 let xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
@@ -37,8 +43,11 @@ const makeTableRow = (arr, accent) => {
 let sortBooksOBJ = {
     data: "",
 
+    kenmerk: "titel",
+     
+
     sorteren: function () {
-        this.data.sort((a, b) => a.auteur[0] > b.auteur[0] ? 1 : -1);
+        this.data.sort((a, b) => a["this.kenmerk"] > b["this.kenmerk "] ? 1 : -1);
         this.uitvoeren(this.data);
     },
 
