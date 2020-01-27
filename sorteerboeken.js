@@ -4,7 +4,6 @@ kenmerk.addEventListener('change', (e) => {
     sortBooksOBJ.sorteren();
 });
 
-// JSON importeren
 let xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -28,11 +27,11 @@ const makeTableHead = (arr) => {
 
 const makeTableRow = (arr, accent) => {
     let row = "";
-   if(accent==true) {
-    row = "<tr class='bookselection__row--accent'>";
-   } else {
-    row = "<tr class='bookselection__row'>";
-   }
+    if (accent == true) {
+        row = "<tr class='bookselection__row--accent'>";
+    } else {
+        row = "<tr class='bookselection__row'>";
+    }
     arr.forEach((item) => {
         row += "<td class='bookselection__data'>" + item + "</td>";
     });
@@ -44,69 +43,87 @@ const giveMonthNumber = (month) => {
     let number;
     switch (month) {
         case "januari":
-          number = 0;
-          break;
+            number = 0;
+            break;
         case "februari":
-          number = 1;
-          break;
+            number = 1;
+            break;
         case "maart":
-          number = 2;
-          break;
+            number = 2;
+            break;
         case "april":
-          number = 3;
-          break;
+            number = 3;
+            break;
         case "mei":
-          number = 4;
-          break;
+            number = 4;
+            break;
         case "juni":
-          number = 5;
-          break;
+            number = 5;
+            break;
         case "juli":
-          number = 6;
-          break;
+            number = 6;
+            break;
         case "augustus":
-          number = 7;
-          break;
+            number = 7;
+            break;
         case "september":
-          number = 8;
-          break;
+            number = 8;
+            break;
         case "oktober":
-          number = 9;
-          break;
+            number = 9;
+            break;
         case "november":
-          number = 10;
-          break;
+            number = 10;
+            break;
         case "december":
-          number = 11;
-          break;
+            number = 11;
+            break;
         default:
-          number = 0
-    
-      }
-        return number
+            number = 0
+
+    }
+    return number
 }
 
 const makeJSdate = (monthYear) => {
     let myArray = monthYear.split(" ");
-    let date = new Date(myArray[1], giveMonthNumber(myArray[0 ]));
-    return date ;
+    let date = new Date(myArray[1], giveMonthNumber(myArray[0]));
+    return date;
 }
 
-// Object dat de boeken uitvoert en sorteert.
+const makePlus = (array) => {
+    let string = "";
+    for (let i = 0; i < array.length; i++) {
+        switch (i) {
+            case array.length - 1:
+                string += array[i];
+                break;
+            case array.length - 2:
+                string += array[i] + " en ";
+                break;
+            default:
+                string += array[i] + ", ";
+
+        }
+    }
+    return string;
+}
+
 let sortBooksOBJ = {
     data: "",
- 
+
     kenmerk: "titel",
-     
-    insertJSdateIn: function() {
+
+    up: 1,
+
+    insertJSdateIn: function () {
         this.data.forEach((item) => {
             item.jsDate = makeJSdate(item.uitgave)
         })
     },
 
-
     sorteren: function () {
-        this.data.sort((a, b) => a["this.kenmerk"] > b["this.kenmerk "] ? 1 : -1);
+        this.data.sort((a, b) => a["this.kenmerk"] > b["this.kenmerk "] ? 1*this.up : -1*this.up);
         this.uitvoeren(this.data);
     },
 
@@ -122,14 +139,15 @@ let sortBooksOBJ = {
         ]);
         for (let i = 0; i < data.length; i++) {
             let accent = false;
-            i%2 == 0 ? accent = true : accent = false;
+            i % 2 == 0 ? accent = true : accent = false;
             let imgElement =
                 "<img src='" +
                 data[i].cover +
                 "' class='bookselection__img'> ";
+            let auteurs = makePlus(data[i].auteur);
             uitvoer += makeTableRow(
                 [data[i].titel,
-                    data[i].auteur[0],
+                    auteurs,
                     imgElement,
                     data[i].uitgave,
                     data[i].paginas,
@@ -141,3 +159,10 @@ let sortBooksOBJ = {
         document.getElementById('uitvoer').innerHTML = uitvoer;
     }
 }
+
+document.getElementsByName('up').forEach((item) => {
+    item.addEventListener('click', (e)=> {
+        sortBooksOBJ.up = parseInt(e.target.value);
+        sortBooksOBJ.sorteren();
+    })
+})
