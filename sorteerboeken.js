@@ -19,8 +19,13 @@ const makeTableHead = (arr) => {
     return head;
 }
 
-const makeTableRow = (arr) => {
-    let row = "<tr class='bookselection__row'>";
+const makeTableRow = (arr, accent) => {
+    let row = "";
+   if(accent==true) {
+    row = "<tr class='bookselection__row--accent'>";
+   } else {
+    row = "<tr class='bookselection__row'>";
+   }
     arr.forEach((item) => {
         row += "<td class='bookselection__data'>" + item + "</td>";
     });
@@ -48,6 +53,8 @@ let sortBooksOBJ = {
             "EAN"
         ]);
         for (let i = 0; i < data.length; i++) {
+            let accent = false;
+            i%2 == 0 ? accent = true : accent = false;
             let imgElement =
                 "<img src='" +
                 data[i].cover +
@@ -60,7 +67,7 @@ let sortBooksOBJ = {
                     data[i].paginas,
                     data[i].taal,
                     data[i].ean
-                ]);
+                ], accent);
 
         }
         document.getElementById('uitvoer').innerHTML = uitvoer;

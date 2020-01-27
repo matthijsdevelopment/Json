@@ -8,7 +8,7 @@
     max-width: 100px;
 }
 
-.bookselection__row:nth-child(even) {
+.bookselection__row--accent {
     background-color: lightgray;
 }
 
