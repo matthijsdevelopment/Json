@@ -9,6 +9,9 @@ xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         sortBooksOBJ.data = JSON.parse(this.responseText);
         sortBooksOBJ.insertJSdateIn();
+        sortBooksOBJ.data.forEach(book => {
+            book.dataUpp = book.titel.toUpperCase();
+        });
         sortBooksOBJ.sorteren();
     }
 }
@@ -110,7 +113,7 @@ const turnTextAround = (string) => {
 let sortBooksOBJ = {
     data: "",
 
-    kenmerk: "titel",
+    kenmerk: "titelUpp",
 
     up: 1,
 
