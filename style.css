@@ -4,7 +4,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.bookselection__img {
+.bookSelection__cover {
     max-width: 100px;
 }
 
@@ -19,4 +19,15 @@
 
 .bookselection__data:nth-child(3) {
     padding: 0;
+}
+
+.booksection {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-gap: 1em;
+    margin-bottom: 1em;
+}
+
+.booksection__price {
+    font-size: 1.5em;
 }

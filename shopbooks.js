@@ -117,10 +117,15 @@ let sortBooksOBJ = {
 
     uitvoeren: function (data) {
 
+        document.getElementById('uitvoer').innerHTML = "";
+
         data.forEach( book => {
             let section = document.createElement('section');
-            section.className = 'book';
+            section.className = 'booksection';
     
+            let main = document.createElement('main');
+            main .className = 'booksection__main';
+
             let img = document.createElement('img');
             img.className = 'bookSelection__cover';
             img.setAttribute('src', book.cover);
@@ -128,11 +133,17 @@ let sortBooksOBJ = {
 
 
             let title = document.createElement('h3');
-            title.className = 'book__title';
+            title.className = 'booksection__title';
             title.textContent = book.titel;
 
+            let price = document.createElement('div');
+            price.className = 'booksection__price';
+            price.textContent = '€ ' + book.prijs;
+
             section.appendChild(img);
-            section.appendChild(title);
+            main.appendChild(title);
+            section.appendChild(main);
+            section.appendChild(price);
             document.getElementById('uitvoer').appendChild(section);
         });
   
