@@ -17,6 +17,7 @@ body {
     float: right;
     position: relative;
     margin-right: 3em;
+    cursor: pointer;
 }
 
 .shoppingcart__number:not(:empty) {
@@ -92,4 +93,20 @@ body {
         background-color: #eee;
     }
     
+}
+
+.orderdBook {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-gap: 2em;
+    margin-bottom: .5em;
+}
+
+.orderdBook__cover {
+    max-width: 50px;
+}
+
+.orderdBook__titel {
+    font-weight: normal;
+    font-size: 1em;
 }
