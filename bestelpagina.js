@@ -70,14 +70,11 @@ let shoppingcart = {
 
     uitvoeren: function() {
 
-        document.getElementById('uitvoer').innerHTML = "";
+        document.getElementById('bestelling').innerHTML = "";
 
         this.items.forEach( book => {
             let section = document.createElement('section');
             section.className = 'orderdBook';
-    
-            let main = document.createElement('main');
-            main .className = 'orderdBook__main';
 
             let img = document.createElement('img');
             img.className = 'orderdBook__cover';
@@ -93,12 +90,14 @@ let shoppingcart = {
             price.className = 'borderdBook __price';
             price.textContent = book.prijs.toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'});
 
+            let remove = document.createElement('div');
+            remove.className = 'orderBook__remove';
 
             section.appendChild(img);
-            main.appendChild(title);
-            section.appendChild(main);
+            section.appendChild(title);
             section.appendChild(price);
-            document.getElementById('uitvoer').appendChild(section);
+            section.appendChild(remove)
+            document.getElementById('bestelling').appendChild(section);
         });
     
     }
