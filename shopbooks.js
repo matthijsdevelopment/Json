@@ -110,6 +110,14 @@ const turnTextAround = (string) => {
     return string;
 }
 
+let shoppingcart = {
+    items: [], 
+    toevoegen: function(el) {
+        this.items.push(el);
+        document.querySelector('.shoppingcart__number').innerHTML = this.items.length;
+    }
+}
+
 
 let sortBooksOBJ = {
     data: "",
@@ -166,6 +174,11 @@ let sortBooksOBJ = {
             let button = document.createElement('button');
             button.className = 'booksection__button';
             button.innerHTML = 'Add to <br> Cart'
+            button.addEventListener('click', () => {
+                shoppingcart.toevoegen(book);
+            })
+
+
 
             section.appendChild(img);
             main.appendChild(title);
