@@ -12,7 +12,7 @@ xmlhttp.onreadystatechange = function () {
         sortBooksOBJ.sorteren();
     }
 }
-xmlhttp.open('GET', "boek.json", true);
+xmlhttp.open('GET', "boeken.json", true);
 xmlhttp.send();
 
 
@@ -25,19 +25,7 @@ const makeTableHead = (arr) => {
     return head;
 }
 
-const makeTableRow = (arr, accent) => {
-    let row = "";
-    if (accent == true) {
-        row = "<tr class='bookselection__row--accent'>";
-    } else {
-        row = "<tr class='bookselection__row'>";
-    }
-    arr.forEach((item) => {
-        row += "<td class='bookselection__data'>" + item + "</td>";
-    });
-    row += "</tr>";
-    return row;
-}
+
 
 const giveMonthNumber = (month) => {
     let number;
@@ -128,35 +116,26 @@ let sortBooksOBJ = {
     },
 
     uitvoeren: function (data) {
-        let uitvoer = makeTableHead([
-            "titel",
-            "auteur(s)",
-            "cover",
-            "uitgave",
-            "bladzijden",
-            "taal",
-            "EAN"
-        ]);
-        for (let i = 0; i < data.length; i++) {
-            let accent = false;
-            i % 2 == 0 ? accent = true : accent = false;
-            let imgElement =
-                "<img src='" +
-                data[i].cover +
-                "' class='bookselection__img'> ";
-            let auteurs = makePlus(data[i].auteur);
-            uitvoer += makeTableRow(
-                [data[i].titel,
-                    auteurs,
-                    imgElement,
-                    data[i].uitgave,
-                    data[i].paginas,
-                    data[i].taal,
-                    data[i].ean
-                ], accent);
 
-        }
-        document.getElementById('uitvoer').innerHTML = uitvoer;
+        data.forEach( book => {
+            let section = document.createElement('section');
+            section.className = 'book';
+    
+            let img = document.createElement('img');
+            img.className = 'bookSelection__cover';
+            img.setAttribute('src', book.cover);
+            img.setAttribute('alt', book.titel);
+
+
+            let title = document.createElement('h3');
+            title.className = 'book__title';
+            title.textContent = book.titel;
+
+            section.appendChild(img);
+            section.appendChild(title);
+            document.getElementById('uitvoer').appendChild(section);
+        });
+  
     }
 }
 
