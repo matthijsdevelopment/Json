@@ -163,12 +163,17 @@ let sortBooksOBJ = {
             price.className = 'booksection__price';
             price.textContent = book.prijs.toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'});
 
+            let button = document.createElement('button');
+            button.className = 'booksection__button';
+            button.innerHTML = 'Add to <br> Cart'
+
             section.appendChild(img);
             main.appendChild(title);
             main.appendChild(auteurs);
             main.appendChild(overig);
             section.appendChild(main);
             section.appendChild(price);
+            price.appendChild(button)
             document.getElementById('uitvoer').appendChild(section);
         });
   

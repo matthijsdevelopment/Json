@@ -4,11 +4,51 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+    margin-top: 2em;
+}
+
+.shoppingcart {
+    width: 3em;
+    height: 3em;
+    background-image: url('winkelwagen.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    float: right;
+    position: relative;
+    margin-right: 3em;
+}
+
+.shoppingcart__number:not(:empty) {
+    background-color: #f00;
+    display: inline-block;
+    color: white;
+    position: absolute;
+    top: -.5em;
+    right: -.9em;
+    line-height: .5em;
+    padding: .5em;
+    border-radius: 50%;
+}
+
+.booksection__button {
+    display: block;
+    margin: 1.5em auto;
+    background-color: #d00;
+    color: white;
+    cursor: pointer;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.booksection__button:hover {
+    background-color: #900;
+    transition: 0.3s ease-in-out;
+}
+
 .bookSelection__cover {
     max-width: 100px;
 }
-
-
 
 .booksection {
     display: grid;
