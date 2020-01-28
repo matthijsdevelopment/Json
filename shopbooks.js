@@ -97,6 +97,16 @@ const makePlus = (array) => {
     return string;
 }
 
+
+const turnTextAround = (string) => {
+    if( string.indexOf(',') != -1 ) {
+        let array = string.split(',');
+        string = array[1] + ' ' + array[0];    
+    }
+    return string;
+}
+
+
 let sortBooksOBJ = {
     data: "",
 
@@ -129,12 +139,12 @@ let sortBooksOBJ = {
             let img = document.createElement('img');
             img.className = 'bookSelection__cover';
             img.setAttribute('src', book.cover);
-            img.setAttribute('alt', book.titel);
+            img.setAttribute('alt', turnTextAround(book.titel));
 
 
             let title = document.createElement('h3');
             title.className = 'booksection__title';
-            title.textContent = book.titel;
+            title.textContent = turnTextAround(book.titel);
 
             let price = document.createElement('div');
             price.className = 'booksection__price';
