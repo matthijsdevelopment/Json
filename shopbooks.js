@@ -112,11 +112,26 @@ const turnTextAround = (string) => {
 
 let shoppingcart = {
     items: [], 
+    pickUpItems: function() {
+        let bestelling;
+        if( localStorage.getItem('orderBooks') == null ) {
+            bestelling = [];
+        } else {
+            bestelling = JSON.parse(localStorage.getItem('orderBooks'));
+            document.querySelector('.shoppingcart__number').innerHTML =  bestelling.length;
+        }
+        return bestelling;
+    },
+
     toevoegen: function(el) {
+        this.items = this.pickUpItems();
         this.items.push(el);
+        localStorage.setItem('orderBooks', JSON.stringify(this.items));
         document.querySelector('.shoppingcart__number').innerHTML = this.items.length;
     }
 }
+
+shoppingcart.pickUpItems();
 
 
 let sortBooksOBJ = {
