@@ -80,7 +80,7 @@ body {
 
 .orderdBook {
     display: grid;
-    grid-template-columns: auto 1fr auto auto;
+    grid-template-columns: auto 1fr auto 4em;
     grid-gap: 2em;
     margin-bottom: .5em;
 }
@@ -106,6 +106,17 @@ body {
 
 .orderBook__remove:hover {
     background-color: #f66;
+}
+
+.orderdBook__total-price {
+    border-top: 2px solid black;
+    padding-top: .3em;
+    grid-column: 3;
+}
+
+.orderdBook__total-tekst {
+    grid-column: 2;
+    text-align: right;
 }
 
 @media screen and (min-width: 40em) {

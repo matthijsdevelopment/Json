@@ -132,10 +132,11 @@ let shoppingcart = {
         section.className = 'orderdBook';
 
         let totalText = document.createElement('div');
-        totalText.className = 'orderdBook__total-price';
+        totalText.className = 'orderdBook__total-tekst';
         totalText.innerHTML = 'Total :';
 
         let totalPrice = document.createElement('div');
+        totalPrice.className = 'orderdBook__total-price';
         totalPrice.textContent = this.totalCalculation().toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'});
 
         section.appendChild(totalText);
