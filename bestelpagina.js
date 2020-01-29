@@ -86,6 +86,14 @@ let shoppingcart = {
         this.uitvoeren();
     },
 
+    totalCalculation: function() {
+        let total = 0;
+        this.items.forEach( book => {
+            total += book.prijs;
+        });
+        return total;
+        },
+
     uitvoeren: function() {
 
         document.getElementById('bestelling').innerHTML = "";
@@ -120,6 +128,19 @@ let shoppingcart = {
             section.appendChild(verwijder)
             document.getElementById('bestelling').appendChild(section);
         });
+        let section = document.createElement('section');
+        section.className = 'orderdBook';
+
+        let totalText = document.createElement('div');
+        totalText.className = 'orderdBook__total-price';
+        totalText.innerHTML = 'Total :';
+
+        let totalPrice = document.createElement('div');
+        totalPrice.textContent = this.totalCalculation().toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'});
+
+        section.appendChild(totalText);
+        section.appendChild(totalPrice);
+        document.getElementById('bestelling').appendChild(section);
 
         if (this.items.length > 0) {
             document.querySelector('.shoppingcart__number').innerHTML = this.items.length;

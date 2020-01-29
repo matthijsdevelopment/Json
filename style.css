@@ -87,6 +87,7 @@ body {
 
 .orderdBook__cover {
     max-width: 50px;
+    padding-bottom: .3em;
 }
 
 .orderdBook__titel {
