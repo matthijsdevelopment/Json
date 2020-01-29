@@ -54,6 +54,7 @@ const turnTextAround = (string) => {
 
 let shoppingcart = {
     items: [], 
+
     pickUpItems: function() {
         let bestelling;
         if( localStorage.getItem('orderBooks') == null ) {
@@ -66,6 +67,24 @@ let shoppingcart = {
             this.items.push(item);
         })
         return bestelling;
+    },
+
+    verwijderItem: function(ean) {
+        this.items.forEach((item, index) => {
+            if (item.ean == ean) {
+                this.items.splice(index, 1);
+                ean = 4;
+            }
+        })
+
+        localStorage.setItem('orderBooks', JSON.stringify(this.items));
+        document.querySelector('.orderBook__remove').innerHTML = this.items.length;
+        if (this.items.length > 0) {
+            document.querySelector('.orderBook__remove').innerHTML = this.items.length;
+        } else {
+            document.querySelector('.orderBook__remove').innerHTML = "";
+        }
+        this.uitvoeren();
     },
 
     uitvoeren: function() {
@@ -87,16 +106,19 @@ let shoppingcart = {
             title.textContent = turnTextAround(book.titel);
 
             let price = document.createElement('div');
-            price.className = 'borderdBook __price';
+            price.className = 'borderdBook__price';
             price.textContent = book.prijs.toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'});
 
-            let remove = document.createElement('div');
-            remove.className = 'orderBook__remove';
+            let verwijder = document.createElement('div');
+            verwijder.className = "orderBook__remove";
+            verwijder.addEventListener('click', () => {
+                this.verwijderItem(book.ean);
+            });
 
             section.appendChild(img);
             section.appendChild(title);
             section.appendChild(price);
-            section.appendChild(remove)
+            section.appendChild(verwijder)
             document.getElementById('bestelling').appendChild(section);
         });
     
