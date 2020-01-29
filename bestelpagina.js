@@ -61,7 +61,6 @@ let shoppingcart = {
             bestelling = [];
         } else {
             bestelling = JSON.parse(localStorage.getItem('orderBooks'));
-            document.querySelector('.shoppingcart__number').innerHTML =  bestelling.length;
         }
         bestelling.forEach( item => {
             this.items.push(item);
@@ -121,7 +120,13 @@ let shoppingcart = {
             section.appendChild(verwijder)
             document.getElementById('bestelling').appendChild(section);
         });
-    
+
+        if (this.items.length > 0) {
+            document.querySelector('.shoppingcart__number').innerHTML = this.items.length;
+            } else {
+            document.querySelector('.shoppingcart__number').innerHTML = '';
+            }
+        
     }
     
 }

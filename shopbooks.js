@@ -118,7 +118,7 @@ let shoppingcart = {
             bestelling = [];
         } else {
             bestelling = JSON.parse(localStorage.getItem('orderBooks'));
-            document.querySelector('.shoppingcart__number').innerHTML =  bestelling.length;
+            this.uitvoeren();
         }
         return bestelling;
     },
@@ -127,8 +127,17 @@ let shoppingcart = {
         this.items = this.pickUpItems();
         this.items.push(el);
         localStorage.setItem('orderBooks', JSON.stringify(this.items));
+        this.uitvoeren();
+    },
+ 
+    uitvoeren: function() {
+        if (this.items.length > 0) {
         document.querySelector('.shoppingcart__number').innerHTML = this.items.length;
+        } else {
+        document.querySelector('.shoppingcart__number').innerHTML = '';
+        }
     }
+
 }
 
 shoppingcart.pickUpItems();
