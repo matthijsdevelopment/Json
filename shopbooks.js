@@ -118,6 +118,9 @@ let shoppingcart = {
             bestelling = [];
         } else {
             bestelling = JSON.parse(localStorage.getItem('orderBooks'));
+            bestelling.forEach(item => {
+                this.items.push(item);
+            });
             this.uitvoeren();
         }
         return bestelling;
@@ -135,6 +138,7 @@ let shoppingcart = {
         document.querySelector('.shoppingcart__number').innerHTML = this.items.length;
         } else {
         document.querySelector('.shoppingcart__number').innerHTML = '';
+        
         }
     }
 
@@ -156,8 +160,8 @@ let sortBooksOBJ = {
         })
     },
 
-    sorteren: function () {
-        this.data.sort((a, b) => a["this.kenmerk"] > b["this.kenmerk "] ? 1*this.up : -1*this.up);
+    sorteren: function() {
+        this.data.sort((a, b) => a[this.kenmerk] > b[this.kenmerk] ? 1 * this.up : -1 * this.up);
         this.uitvoeren(this.data);
     },
 

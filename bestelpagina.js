@@ -61,6 +61,7 @@ let shoppingcart = {
             bestelling = [];
         } else {
             bestelling = JSON.parse(localStorage.getItem('orderBooks'));
+        
         }
         bestelling.forEach( item => {
             this.items.push(item);

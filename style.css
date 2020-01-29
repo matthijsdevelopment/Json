@@ -8,6 +8,14 @@ body {
     margin-top: 2em;
 }
 
+.header {
+    position: sticky;
+    top: 0;
+    margin: 0;
+    padding: .3em;
+    background-color: #fff;
+}
+
 .shoppingcart {
     width: 3em;
     height: 3em;

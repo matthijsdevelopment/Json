@@ -10,8 +10,12 @@
 </head>
 
 <body lang="nl">
-  <a href="bestelpagina.html"><div class="shoppingcart"> <span class="shoppingcart__number"></span> </div></a>  
-    <h1>een selectie van boeken</h1>
+    <header class="header">
+        <a href="bestelpagina.html">
+            <div class="shoppingcart"> <span class="shoppingcart__number"></span> </div>
+        </a>
+        <h1>een selectie van boeken</h1>
+    </header>
     <select name="" id="kenmerk">
         <option value="dataUpp" selected>titel</option>
         <option value="sortAuteur">auteur(s)</option>
@@ -21,11 +25,13 @@
         <option value="prijs">prijs</option>
     </select>
 
-    <label> 
-        <label><input type="radio" name="up" value="1">oplopend</label>
-        <label><input type="radio" name="down" value="-1">aflopend</label>
+    <label>
+        <input type="radio" checked name="up" value="1">Oplopend
     </label>
- 
+    <label>
+        <input type="radio" name="up" value="-1">Aflopend
+    </label>
+
 
     <div id="uitvoer"></div>
     <script src="shopbooks.js" charset="utf-8">
